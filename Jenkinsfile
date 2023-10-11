@@ -16,7 +16,7 @@ pipeline {
        stage('Deploy') {
             steps {
                 echo 'Hello World'
-		bat 'atlas-install-plugin --username jiraUsername--password jirapassword --server localhost --http-port 8080 --plugin-key com.atlassian.jira.jira-api --context-path ""'
+		bat 'atlas-install-plugin --username someshwara2001 --password Somesh*2001 --server localhost --http-port 8080 --plugin-key com.atlassian.jira.jira-api --context-path ""'
             }
         }
     }
