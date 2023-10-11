@@ -1,0 +1,45 @@
+WRMCB=function(e){var c=console;if(c&&c.log&&c.error){c.log('Error running batched script.');c.error(e);}}
+;
+try {
+/* module-key = 'com.atlassian.jira.jira-postsetup-announcements-plugin:post-setup-announcements', location = 'onboarding/postsetup/postsetupAlert.soy' */
+// This file was automatically generated from postsetupAlert.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace JIRA.Templates.PostSetup.
+ */
+
+if (typeof JIRA == 'undefined') { var JIRA = {}; }
+if (typeof JIRA.Templates == 'undefined') { JIRA.Templates = {}; }
+if (typeof JIRA.Templates.PostSetup == 'undefined') { JIRA.Templates.PostSetup = {}; }
+
+
+JIRA.Templates.PostSetup.dbDiscoveryContent = function(opt_data, opt_ignored) {
+  return '<p>' + soy.$$escapeHtml('Your Jira instance is using a built-in HSQLDB database for evaluation purposes. For production environments we strongly recommend you configure Jira to use an external database.') + '</p><p class="post-setup-discovery-buttons"><a class="aui-button post-setup-action ' + soy.$$escapeHtml(opt_data.actionElementClass) + ' ' + soy.$$escapeHtml(opt_data.closeElementClass) + '" target="_blank" href="https://confluence.atlassian.com/display/JIRA/Switching+Databases#SwitchingDatabases-differenttype">' + soy.$$escapeHtml('Learn more') + '</a> ' + JIRA.Templates.PostSetupLib.closeButton(opt_data) + '</p>';
+};
+if (goog.DEBUG) {
+  JIRA.Templates.PostSetup.dbDiscoveryContent.soyTemplateName = 'JIRA.Templates.PostSetup.dbDiscoveryContent';
+}
+
+
+JIRA.Templates.PostSetup.appPropertiesDiscoveryContent = function(opt_data, opt_ignored) {
+  return '<p>' + soy.$$escapeHtml('Default settings have been applied to your Jira instance.') + '</p><p><a class="aui-button post-setup-action ' + soy.$$escapeHtml(opt_data.actionElementClass) + '" href="' + soy.$$escapeHtml("") + '/secure/admin/EditApplicationProperties!default.jspa">' + soy.$$escapeHtml('Edit settings') + '</a> ' + JIRA.Templates.PostSetupLib.closeButton(opt_data) + '</p>';
+};
+if (goog.DEBUG) {
+  JIRA.Templates.PostSetup.appPropertiesDiscoveryContent.soyTemplateName = 'JIRA.Templates.PostSetup.appPropertiesDiscoveryContent';
+}
+
+
+JIRA.Templates.PostSetup.mailPropertiesDiscoveryContent = function(opt_data, opt_ignored) {
+  return '<p>' + soy.$$escapeHtml('Jira can send email notifications to users when certain events occur. You need to configure Jira\x27s mail server to do this.') + '</p><p><a class="aui-button post-setup-action ' + soy.$$escapeHtml(opt_data.actionElementClass) + '" href="' + soy.$$escapeHtml("") + '/secure/admin/OutgoingMailServers.jspa">' + soy.$$escapeHtml('Configure mail server') + '</a> ' + JIRA.Templates.PostSetupLib.closeButton(opt_data) + '</p>';
+};
+if (goog.DEBUG) {
+  JIRA.Templates.PostSetup.mailPropertiesDiscoveryContent.soyTemplateName = 'JIRA.Templates.PostSetup.mailPropertiesDiscoveryContent';
+}
+
+}catch(e){WRMCB(e)};
+;
+try {
+/* module-key = 'com.atlassian.jira.jira-postsetup-announcements-plugin:post-setup-announcements', location = 'onboarding/postsetup/postsetup-alert.js' */
+!function(){"use strict";require(["jquery","jira/postsetup/announcements-view-lib","jira/postsetup/announcements-initializer"],(function(e,t,i){var p=t.Announcement,n=t.ifOnPage,s=t.findElement,a=t.inViewPort,o=t.soyTemplateAnnouncementBody,r=t.GRAVITY_LEFT,u=t.GRAVITY_BELOW;e((function(){e={"database.setup":new p("database.setup",o(JIRA.Templates.PostSetup.dbDiscoveryContent),s("#system-admin-menu"),u,0,!0),"app.properties.setup":new p("app.properties.setup",o(JIRA.Templates.PostSetup.appPropertiesDiscoveryContent),n("admin/ViewApplicationProperties.jspa",s("#edit-app-properties")),u,20,!0),"mail.properties.setup":new p("mail.properties.setup",o(JIRA.Templates.PostSetup.mailPropertiesDiscoveryContent),n("admin/ViewApplicationProperties.jspa",a(s("#outgoing_mail"))),r,-10,!1)},i.createFlagsFromDataProvider(e);var e}))}))}();
+}catch(e){WRMCB(e)};

@@ -1,0 +1,42 @@
+WRMCB=function(e){var c=console;if(c&&c.log&&c.error){c.log('Error running batched script.');c.error(e);}}
+;
+try {
+/* module-key = 'com.atlassian.jira.jira-postsetup-announcements-plugin:post-setup-announcements-lib', location = 'onboarding/postsetup/postsetup-alert-lib.soy' */
+// This file was automatically generated from postsetup-alert-lib.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace JIRA.Templates.PostSetupLib.
+ */
+
+if (typeof JIRA == 'undefined') { var JIRA = {}; }
+if (typeof JIRA.Templates == 'undefined') { JIRA.Templates = {}; }
+if (typeof JIRA.Templates.PostSetupLib == 'undefined') { JIRA.Templates.PostSetupLib = {}; }
+
+
+JIRA.Templates.PostSetupLib.discoveryContentContainer = function(opt_data, opt_ignored) {
+  return '<div class="postsetup-discovery-content">' + soy.$$escapeHtml(opt_data.content) + '</div>';
+};
+if (goog.DEBUG) {
+  JIRA.Templates.PostSetupLib.discoveryContentContainer.soyTemplateName = 'JIRA.Templates.PostSetupLib.discoveryContentContainer';
+}
+
+
+JIRA.Templates.PostSetupLib.closeButton = function(opt_data, opt_ignored) {
+  return '<a class="postsetup-close-link ' + soy.$$escapeHtml(opt_data.closeElementClass) + '" href="#">' + soy.$$escapeHtml('Dismiss') + '</a>';
+};
+if (goog.DEBUG) {
+  JIRA.Templates.PostSetupLib.closeButton.soyTemplateName = 'JIRA.Templates.PostSetupLib.closeButton';
+}
+
+}catch(e){WRMCB(e)};
+;
+try {
+/* module-key = 'com.atlassian.jira.jira-postsetup-announcements-plugin:post-setup-announcements-lib', location = 'onboarding/postsetup/postsetup-alert-lib.js' */
+define("jira/postsetup/announcements-view-lib",["jira/analytics","jira/util/logger","jira/ajs/ajax/smart-ajax","wrm/context-path","jira/jquery/deferred","jquery","underscore","aui/inline-dialog"],(function(n,t,e,i,o,r,s,a){"use strict";var u="post.setup.announcement",c="post-setup-discovery-close-js",l="post-setup-action-js";var d=function(n,t){var e={weight:0};this.viewsDefinitions=n;this.announcements=s.sortBy(t,(function(t){return(n[t]||e).weight}))};d.prototype.createFlags=function(){s.find(this.announcements,(function(n){var t=this.viewsDefinitions[n];if(void 0!==t){return this.announce(t)}return!1}),this)};d.prototype.announce=function(n){var t=this.addFlag(n);t.then(s.bind((function(){this.dismiss([n.getId()])}),this));return"rejected"!==t.state()&&(n.blockOther||"resolved"===t.state())};d.prototype.dismiss=function(n){e.makeRequest({url:i()+"/rest/onboarding/1/postsetup_announcement/announced",async:!0,contentType:"application/json",type:"POST",dataType:"json",data:JSON.stringify(n)}).done((function(){t.log("Dismissed: "+n)})).fail((function(){t.log("Dismissal failed: "+n)}))};function f(t,e){var i=u+"."+t;e=e||{};n.send({name:i,data:e})}d.prototype.addFlag=function(n){var t="post-setup-announcement-"+n.getId().replace(/[. #>+]/g,"-");return n.getAnchor().then((function(e){var i=new a(e,t,(function(t,e,o){n.buildAnnouncementBody(i,t);o()}),{noBind:!0,hideDelay:null,persistent:!0,width:350,gravity:n.anchorGravity});i.show(null,e);i.addClass("aui-help");setTimeout((function(){i.scrollIntoView();e.scrollIntoView()}),0);!function(n,t){f(n.getId()+".show");t.on("click","."+c,(function(){f(n.getId()+".dismiss")}));t.on("click","."+l,(function(){f(n.getId()+".action")}))}(n,i);return!0})).promise()};return{ifOnPage:function(n,t){return function(){return location.pathname.indexOf(n)>=0?t():(new o).reject().promise()}},findElement:function(n){return function(){var t=r(n),e=new o;t.length>0?e.resolve(t):e.reject();return e.promise()}},inViewPort:function(n){return function(){return n().then((function(n){var t=new o;function e(){if(n.isInView({margin:10})){t.resolve(n);return!0}return!1}e()||r(window).scroll(s.throttle((function(n){e()&&r(this).unbind(n)}),100));return t.promise()}))}},soyTemplateAnnouncementBody:function(n){return function(t,e){var i=n({popupId:t[0].id,closeElementClass:c,actionElementClass:l});t.on("click","."+c,(function(n){n.preventDefault();t.hide()}));var o=JIRA.Templates.PostSetupLib.discoveryContentContainer({content:soydata.VERY_UNSAFE.ordainSanitizedHtml(i)});e.html(o)}},closeElementClass:c,actionElementClass:l,GRAVITY_BELOW:"n",GRAVITY_LEFT:"w",AnnouncementsController:d,Announcement:function(n,t,e,i,o,r){return{getId:function(){return n},getAnchor:e,buildAnnouncementBody:t,anchorGravity:i||"n",weight:o||0,blockOther:r}}}}));
+}catch(e){WRMCB(e)};
+;
+try {
+/* module-key = 'com.atlassian.jira.jira-postsetup-announcements-plugin:post-setup-announcements-lib', location = 'onboarding/postsetup/postsetup-alert-initializer.js' */
+define("jira/postsetup/announcements-initializer",["wrm/data","jira/postsetup/announcements-view-lib"],(function(n,e){"use strict";var t=n.claim("com.atlassian.jira.jira-postsetup-announcements-plugin:post-setup-announcements.announcements")||[];return{createFlagsFromDataProvider:function(n){new e.AnnouncementsController(n,t).createFlags()}}}));
+}catch(e){WRMCB(e)};
